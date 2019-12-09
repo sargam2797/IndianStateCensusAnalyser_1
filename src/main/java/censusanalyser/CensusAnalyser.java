@@ -33,6 +33,7 @@ public class CensusAnalyser {
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
     }
+
     public <T> Iterator<T> loadParticularCsvFile(Reader reader, Class csvClass) throws CensusAnalyserException {
         try {
             CsvToBeanBuilder<T> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
@@ -45,6 +46,7 @@ public class CensusAnalyser {
                     CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
         }
     }
+
     public <T> int getCount(Iterator<T> censusCSVIterator) {
         Iterable<T> csvIterable = () -> censusCSVIterator;
         int count = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
