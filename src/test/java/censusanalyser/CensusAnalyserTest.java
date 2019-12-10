@@ -114,6 +114,18 @@ public class CensusAnalyserTest {
     }
 
     @Test
+    public void givenIndianStateCensusData_whenSortedByHighestDensity_ShouldReturnTrue() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.sortByDensityCensusData();
+            IndiaCensusCSVDAO[] censusCSVS = new Gson().fromJson(sortedCensusData, IndiaCensusCSVDAO[].class);
+            Assert.assertEquals("Bihar", censusCSVS[28].state);
+        } catch (CensusAnalyserException e) {
+        }
+    }
+
+        @Test
     public void givenIndianStateCodeCSV_returnExactCount() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
