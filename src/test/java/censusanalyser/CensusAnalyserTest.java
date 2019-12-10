@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 public class CensusAnalyserTest {
 
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
+    private static final String INDIA_CENSUS_CSV_FILE_PATH_INVALID_EXT = "./src/test/resources/IndiaStateCensusData.txt";
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private static final String INDIA_STATE_CODE_FILE_PATH = "/home/user/CensusAnalyser/CensusAnalyser/src/test/" +
             "resources/IndiaStateCode.csv";
@@ -35,12 +36,12 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianStateCodeCSV_returnExactCount() {
+    public void givenIndiaCensusData_WithCorrectFileButWrongExtension_ShouldThrowException() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
-            int noOfStateCodeResult = censusAnalyser.loadIndianStateCodeData(INDIA_STATE_CODE_FILE_PATH);
-            Assert.assertEquals(37, noOfStateCodeResult);
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH_INVALID_EXT);
         } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
 
@@ -54,6 +55,16 @@ public class CensusAnalyserTest {
             Assert.assertEquals("Andhra Pradesh", censusCSVS[0].state);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIndianStateCodeCSV_returnExactCount() {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        try {
+            int noOfStateCodeResult = censusAnalyser.loadIndianStateCodeData(INDIA_STATE_CODE_FILE_PATH);
+            Assert.assertEquals(37, noOfStateCodeResult);
+        } catch (CensusAnalyserException e) {
         }
     }
 }
