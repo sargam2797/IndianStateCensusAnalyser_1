@@ -125,7 +125,7 @@ public class CensusAnalyserTest {
         }
     }
 
-        @Test
+    @Test
     public void givenIndianStateCodeCSV_returnExactCount() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
