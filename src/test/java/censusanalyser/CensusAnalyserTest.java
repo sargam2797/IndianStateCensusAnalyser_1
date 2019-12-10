@@ -90,7 +90,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianStateCensusData_whenSortedByPopulation_ShouldReturnTrue() {
+    public void givenIndianStateCensusData_whenSortedByHighestPopulationState_ShouldReturnTrue() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
