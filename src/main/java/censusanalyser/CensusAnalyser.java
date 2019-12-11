@@ -62,12 +62,6 @@ public class CensusAnalyser {
         }
     }
 
-    public <T> int getCount(Iterator<T> censusCSVIterator) {
-        Iterable<T> csvIterable = () -> censusCSVIterator;
-        int count = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-        return count;
-    }
-
     public String sortByStateCensusData() throws CensusAnalyserException {
         exception();
         Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.state);
