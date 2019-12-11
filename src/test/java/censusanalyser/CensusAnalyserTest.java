@@ -76,7 +76,6 @@ public class CensusAnalyserTest {
         }
     }
 
-
     @Test
     public void givenIndianStateCensusData_whenSortedByState_ShouldReturnTrue() {
         try {
