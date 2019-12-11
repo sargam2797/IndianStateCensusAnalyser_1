@@ -21,8 +21,7 @@ public class CensusAnalyser {
     }
 
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-            ;
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSvBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
             Iterator<IndiaCensusCSV> censusCSVIterator = csvBuilder.getFileByIterator(reader,
                     IndiaCensusCSV.class);
