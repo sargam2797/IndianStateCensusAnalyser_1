@@ -64,41 +64,15 @@ public class CensusAnalyser {
         }
     }
 
-    public String sortByStateCensusData() throws CensusAnalyserException {
+    public String sortByParameterCensusData(SortingField.Parameter parameter) throws CensusAnalyserException {
         exception();
-        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.state);
+        Comparator<IndiaCensusDAO> censusComparator = SortingField.getParameter(parameter);
         List<IndiaCensusDAO> censusDAOS = censusMap.values().stream().collect(Collectors.toList());
         this.sort(censusDAOS,censusComparator);
         String sortStateCensusToJson = new Gson().toJson(censusDAOS);
         return sortStateCensusToJson;
     }
 
-    public String sortByPopulationCensusData() throws CensusAnalyserException {
-        exception();
-        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.population);
-        List<IndiaCensusDAO> censusDAOS = censusMap.values().stream().collect(Collectors.toList());
-        this.sort(censusDAOS,censusComparator);
-        String sortStateCensusToJson = new Gson().toJson(censusDAOS);
-        return sortStateCensusToJson;
-    }
-
-    public String sortByAreaCensusData() throws CensusAnalyserException {
-        exception();
-        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.areaInSqKm);
-        List<IndiaCensusDAO> censusDAOS = censusMap.values().stream().collect(Collectors.toList());
-        this.sort(censusDAOS,censusComparator);
-        String sortStateCensusToJson = new Gson().toJson(censusDAOS);
-        return sortStateCensusToJson;
-    }
-
-    public String sortByDensityCensusData() throws CensusAnalyserException {
-        exception();
-        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.densityPerSqKm);
-        List<IndiaCensusDAO> censusDAOS = censusMap.values().stream().collect(Collectors.toList());
-        this.sort(censusDAOS,censusComparator);
-        String sortStateCensusToJson = new Gson().toJson(censusDAOS);
-        return sortStateCensusToJson;
-    }
     private void exception() throws CensusAnalyserException {
         if (censusMap == null || censusMap.size() == 0) {
             throw  new CensusAnalyserException("no census data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
