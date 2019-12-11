@@ -16,10 +16,10 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
-    List<IndiaCensusCSVDTO> censusList =null;
+    List<IndiaCensusDAO> censusList =null;
 
     public CensusAnalyser() {
-        this.censusList = new ArrayList<IndiaCensusCSVDTO>();
+        this.censusList = new ArrayList<>();
     }
 
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
@@ -28,9 +28,9 @@ public class CensusAnalyser {
             ICSvBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
             Iterator<IndiaCensusCSV> censusCSVIterator = csvBuilder.loadParticularCsvFile(reader,
                     IndiaCensusCSV.class);
-            while (censusCSVIterator.hasNext()) {
-                this.censusList.add(new IndiaCensusCSVDTO(censusCSVIterator.next()));
-            }
+            Iterable<IndiaCensusCSV> csvIterable = () -> censusCSVIterator;
+            StreamSupport.stream(csvIterable.spliterator(),false)
+                    .forEach(IndiaCensusCSV -> censusList.add(new IndiaCensusDAO(IndiaCensusCSV)));
             return censusList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
@@ -65,7 +65,7 @@ public class CensusAnalyser {
 
     public String sortByStateCensusData() throws CensusAnalyserException {
         exception();
-        Comparator<IndiaCensusCSVDTO> censusComparator = Comparator.comparing(census -> census.state);
+        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.state);
         this.sort(censusComparator);
         String result = addToJson();
         return result;
@@ -73,7 +73,7 @@ public class CensusAnalyser {
 
     public String sortByPopulationCensusData() throws CensusAnalyserException {
         exception();
-        Comparator<IndiaCensusCSVDTO> censusComparator = Comparator.comparing(census -> census.population);
+        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.population);
         this.sort(censusComparator);
         String result = addToJson();
         return result;
@@ -81,7 +81,7 @@ public class CensusAnalyser {
 
     public String sortByAreaCensusData() throws CensusAnalyserException {
         exception();
-        Comparator<IndiaCensusCSVDTO> censusComparator = Comparator.comparing(census -> census.areaInSqKm);
+        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.areaInSqKm);
         this.sort(censusComparator);
         String result = addToJson();
         return result;
@@ -89,7 +89,7 @@ public class CensusAnalyser {
 
     public String sortByDensityCensusData() throws CensusAnalyserException {
         exception();
-        Comparator<IndiaCensusCSVDTO> censusComparator = Comparator.comparing(census -> census.densityPerSqKm);
+        Comparator<IndiaCensusDAO> censusComparator = Comparator.comparing(census -> census.densityPerSqKm);
         this.sort(censusComparator);
         String result = addToJson();
         return result;
@@ -106,11 +106,11 @@ public class CensusAnalyser {
         return sortStateCensusToJson;
     }
 
-    private void sort(Comparator<IndiaCensusCSVDTO> censusComparator) {
+    private void sort(Comparator<IndiaCensusDAO> censusComparator) {
         for (int i = 0; i < censusList.size() - 1; i++) {
             for (int j = 0; j < censusList.size() - i - 1; j++) {
-                IndiaCensusCSVDTO tempObj1 = censusList.get(j);
-                IndiaCensusCSVDTO tempObj2 = censusList.get(j + 1);
+                IndiaCensusDAO tempObj1 = censusList.get(j);
+                IndiaCensusDAO tempObj2 = censusList.get(j + 1);
                 if ( censusComparator.compare(tempObj1, tempObj2) > 0) {
                     censusList.set(j, tempObj2);
                     censusList.set(j + 1, tempObj1);

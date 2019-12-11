@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="censusanalyser.CensusAnalyserTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2019-12-10T12:55:08" hostname="FH400" time="0.996">
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2019-12-11T05:22:11" hostname="FH400" time="0.827">
   <properties/>
-  <testcase name="givenIndianStateCensusData_whenSortedByState_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.492"/>
-  <testcase name="givenIncorrectDelimiterInIndiaCensusData_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.078"/>
-  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.073"/>
-  <testcase name="givenIndianStateCodeCSV_returnExactCount" classname="censusanalyser.CensusAnalyserTest" time="0.104"/>
-  <testcase name="givenIndianStateCensusData_whenSortedByHighestDensity_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.08"/>
-  <testcase name="givenEmptyCsvFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.019"/>
-  <testcase name="givenIncorrectHeaderInIndiaCensusData_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.034"/>
-  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.005"/>
-  <testcase name="givenIndianStateCensusData_whenSortedByHighestAreaInSqKm_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.032"/>
-  <testcase name="givenIndiaCensusData_WithCorrectFileButWrongExtension_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianStateCensusData_whenSortedByPopulation_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.054"/>
+  <testcase name="givenIndianStateCensusData_whenSortedByState_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.367"/>
+  <testcase name="givenIncorrectDelimiterInIndiaCensusData_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.087"/>
+  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.064"/>
+  <testcase name="givenIndianStateCodeCSV_returnExactCount" classname="censusanalyser.CensusAnalyserTest" time="0.065"/>
+  <testcase name="givenIndianStateCensusData_whenSortedByHighestDensity_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.053"/>
+  <testcase name="givenEmptyCsvFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.02"/>
+  <testcase name="givenIncorrectHeaderInIndiaCensusData_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.041"/>
+  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.01"/>
+  <testcase name="givenIndianStateCensusData_whenSortedByHighestAreaInSqKm_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.038"/>
+  <testcase name="givenIndiaCensusData_WithCorrectFileButWrongExtension_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.007"/>
+  <testcase name="givenIndianStateCensusData_whenSortedByHighestPopulationState_ShouldReturnTrue" classname="censusanalyser.CensusAnalyserTest" time="0.046"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
