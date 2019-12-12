@@ -18,32 +18,14 @@ public class CensusAnalyser {
 
     public CensusAnalyser() { }
 
-    public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
-        censusMap = new censusLoader().loadCensusData(csvFilePath,IndiaCensusCSV.class);
+    public int loadIndiaCensusData(String... csvFilePath) throws CensusAnalyserException {
+        censusMap = new censusLoader().loadCensusData(IndiaCensusCSV.class,csvFilePath);
         return censusMap.size();
     }
 
-    public int loadUsCensusData(String usCensusCsvEmptyFilePath) throws CensusAnalyserException {
-        censusMap = new censusLoader().loadCensusData(usCensusCsvEmptyFilePath,USCensusCSV.class);
+    public int loadUsCensusData(String... usCensusCsvFilePath) throws CensusAnalyserException {
+        censusMap = new censusLoader().loadCensusData(USCensusCSV.class, usCensusCsvFilePath);
         return censusMap.size();
-    }
-
-    public int loadIndianStateCodeData(String csvFilePath) throws CensusAnalyserException {
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-            ICSvBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
-            Iterator<IndiaStateCodeCsv> stateCSVIterator = csvBuilder.getFileByIterator(reader,
-                    IndiaStateCodeCsv.class);
-            Iterable<IndiaStateCodeCsv> csvIterable = () -> stateCSVIterator;
-            StreamSupport.stream(csvIterable.spliterator(),false)
-                    .filter(csvState -> censusMap.get(csvState.stateName) != null)
-                    .forEach(csvState -> censusMap.get(csvState.stateName).stateCode = csvState.stateCode);
-            return censusMap.size();
-        } catch (IOException e) {
-            throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-        } catch (CsvBuilderException e) {
-            throw new CensusAnalyserException(e.getMessage(), e.type.name());
-        }
     }
 
     public String sortByParameterCensusData(SortingField.Parameter parameter) throws CensusAnalyserException {
