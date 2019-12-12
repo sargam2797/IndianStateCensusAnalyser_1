@@ -75,18 +75,14 @@ public class CensusAnalyser {
     }
 
     public String sortByParameterCensusData(SortingField.Parameter parameter) throws CensusAnalyserException {
-        exception();
+        if (censusMap == null || censusMap.size() == 0) {
+            throw  new CensusAnalyserException("no census data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
         Comparator<CensusDAO> censusComparator = SortingField.getParameter(parameter);
         List<CensusDAO> censusDAOS = censusMap.values().stream().collect(Collectors.toList());
         this.sort(censusDAOS,censusComparator);
         String sortStateCensusToJson = new Gson().toJson(censusDAOS);
         return sortStateCensusToJson;
-    }
-
-    private void exception() throws CensusAnalyserException {
-        if (censusMap == null || censusMap.size() == 0) {
-            throw  new CensusAnalyserException("no census data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
-        }
     }
 
     private void sort(List<CensusDAO> censusDAOS, Comparator<CensusDAO> censusComparator) {
