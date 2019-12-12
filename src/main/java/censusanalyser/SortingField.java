@@ -12,15 +12,15 @@ public class SortingField {
     }
 
     public static Comparator getParameter(Parameter fields) {
-        sortByFields.put(Parameter.DENSITY, Comparator.<IndiaCensusDAO,Integer>comparing(census ->
-                census.densityPerSqKm));
-        sortByFields.put(Parameter.STATE, Comparator.<IndiaCensusDAO,String>comparing(census ->
+        sortByFields.put(Parameter.DENSITY, Comparator.<CensusDAO,Double>comparing(census ->
+                census.populationDensity));
+        sortByFields.put(Parameter.STATE, Comparator.<CensusDAO,String>comparing(census ->
                 census.state)) ;
-        sortByFields.put(Parameter.POPULATION, Comparator.<IndiaCensusDAO,Integer>comparing(census ->
+        sortByFields.put(Parameter.POPULATION, Comparator.<CensusDAO,Integer>comparing(census ->
                 census.population));
-        sortByFields.put(Parameter.AREA, Comparator.<IndiaCensusDAO,Integer>comparing(census ->
-                census.areaInSqKm));
-        Comparator<IndiaCensusDAO> comparator = sortByFields.get(fields);
+        sortByFields.put(Parameter.AREA, Comparator.<CensusDAO,Double>comparing(census ->
+                census.totalArea));
+        Comparator<CensusDAO> comparator = sortByFields.get(fields);
         return comparator;
     }
 
