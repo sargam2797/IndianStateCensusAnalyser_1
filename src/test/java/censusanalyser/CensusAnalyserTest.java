@@ -128,8 +128,9 @@ public class CensusAnalyserTest {
     public void givenIndianStateCodeCSV_returnExactCount() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
-            int numOfRecords= censusAnalyser.loadIndianStateCodeData(INDIA_STATE_CODE_FILE_PATH);
-            Assert.assertEquals(37, numOfRecords);
+           censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+           int result = censusAnalyser.loadIndianStateCodeData(INDIA_STATE_CODE_FILE_PATH);
+            Assert.assertEquals(29,result);
         } catch (CensusAnalyserException e) {
         }
     }
