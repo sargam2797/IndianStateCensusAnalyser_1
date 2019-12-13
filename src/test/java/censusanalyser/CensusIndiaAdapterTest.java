@@ -22,6 +22,8 @@ public class CensusIndiaAdapterTest {
             "/resources/IndiaStateCodeDelimiter.csv";
     private static final String INDIA_STATE_CODE_CSV_HEADER_FILE = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
             "/resources/IndiaStateCodeHeader.csv";
+    private static final String US_CENSUS_CSV_FILE_PATH = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
+            "/resources/USCensusData.csv";
 
     @Test
     public void givenIndiaCensusData_returnsExactMapCount() {
@@ -99,4 +101,5 @@ public class CensusIndiaAdapterTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.ONLY_ONE_FILE,e.type);
         }
     }
+
 }

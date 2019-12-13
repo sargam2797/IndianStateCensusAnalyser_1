@@ -13,6 +13,8 @@ public class CensusUSAdapterTest {
             "/resources/USCensusData1.csv";
     private static final String US_CENSUS_CSV_FILE_PATH_WRONG_EXT = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
             "/resources/USCensusData.txt";
+    private static final String US_CENSUS_CSV_DELIMITER_PATH = "/home/user/CensusAnalyser/CensusAnalyser/src/test/" +
+            "resources/USCensusDataDelimiter.csv";
 
     @Test
     public void givenUSCensusData_returnsExactMapCount() {
@@ -45,6 +47,16 @@ public class CensusUSAdapterTest {
             usCensusAdapter.loadCensusData(CensusAnalyser.Country.US,US_CENSUS_CSV_FILE_PATH_WRONG_EXT);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenIncorrectDelimiterInUSCensusData_ShouldThrowException() {
+        USCensusAdapter usCensusAdapter =  new USCensusAdapter();
+        try {
+            usCensusAdapter.loadCensusData(CensusAnalyser.Country.US,US_CENSUS_CSV_DELIMITER_PATH);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.ISSUE_RELATED_TO_FILE, e.type);
         }
     }
 

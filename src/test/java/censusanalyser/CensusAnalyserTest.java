@@ -19,7 +19,7 @@ public class CensusAnalyserTest {
     public void givenIndianStateCensusData_whenSortedByState_ShouldReturnTrue() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            censusAnalyser.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH,INDIA_STATE_CODE_FILE_PATH);
+            censusAnalyser.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH);
             String sortedCensusData = censusAnalyser.sortByParameterCensusData(SortingField.Parameter.STATE);
             CensusDAO[] censusCSVS = new Gson().fromJson(sortedCensusData, CensusDAO[].class);
             Assert.assertEquals("Andhra Pradesh", censusCSVS[0].state);
