@@ -92,4 +92,16 @@ public class CensusAnalyserTest {
         }
     }
 
+    @Test
+    public void givenUSStateCensusData_whenSortedByHighestAreaInSqKm_ShouldReturnTrue() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser(CensusAnalyser.Country.US);
+            censusAnalyser.loadCensusData(CensusAnalyser.Country.US,US_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.sortByParameterCensusData(SortingFieldForCensusAnalyser.Parameter.AREA);
+            USCensusCSV[] censusCSVS = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
+            Assert.assertEquals("Alaska", censusCSVS[0].state);
+        } catch (CensusAnalyserException e) {
+        }
+    }
+
 }
