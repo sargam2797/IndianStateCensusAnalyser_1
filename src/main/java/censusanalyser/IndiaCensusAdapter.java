@@ -18,10 +18,11 @@ public class IndiaCensusAdapter extends CensusAdapter {
     public <T> Map<String, CensusDAO> loadCensusData(CensusAnalyser.Country country, String... csvFilePath)
             throws CensusAnalyserException {
         Map<String, CensusDAO> censusDAOMap = super.loadCensusData(IndiaCensusCSV.class, csvFilePath);
+        censusDAOMap = loadIndianStateCodeData(csvFilePath[1]);
         return censusDAOMap;
     }
 
-    public int loadIndianStateCodeData(Map<String, CensusDAO> censusDAOMap, String csvFilePath) throws CensusAnalyserException {
+    public Map loadIndianStateCodeData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSvBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
             Iterator<IndiaStateCodeCsv> stateCSVIterator = csvBuilder.getFileByIterator(reader,
@@ -30,7 +31,7 @@ public class IndiaCensusAdapter extends CensusAdapter {
             StreamSupport.stream(csvIterable.spliterator(),false)
                     .filter(csvState -> censusMap.get(csvState.stateName) != null)
                     .forEach(csvState -> censusMap.get(csvState.stateName).stateCode = csvState.stateCode);
-            return censusMap.size();
+            return censusMap;
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
