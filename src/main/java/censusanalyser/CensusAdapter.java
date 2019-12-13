@@ -41,7 +41,7 @@ public abstract class CensusAdapter {
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         } catch (CsvBuilderException e) {
             throw new CensusAnalyserException(e.getMessage(), e.type.name());
-        } catch (RuntimeException e) {
+        }catch (RuntimeException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.ISSUE_RELATED_TO_FILE);
         }
