@@ -14,6 +14,14 @@ public class CensusIndiaAdapterTest {
     private static final String INDIA_CENSUS_CSV_FILE_PATH_INVALID_EXT = "./src/test/resources/IndiaStateCensusData.txt";
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private static final String INDIA_CENSUS_CSV_EMPTY_FILE_PATH = "";
+    private static final String INDIA_CENSUS_CSV_DELIMITER_FILE = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
+            "/resources/IndiaStateCensusDataDelimiter.csv";
+    private static final String INDIA_CENSUS_CSV_HEADER_FILE = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
+            "/resources/IndiaStateCensusDataHeader.csv";
+    private static final String INDIA_STATE_CODE_CSV_DELIMITER_FILE = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
+            "/resources/IndiaStateCodeDelimiter.csv";
+    private static final String INDIA_STATE_CODE_CSV_HEADER_FILE = "/home/user/CensusAnalyser/CensusAnalyser/src/test" +
+            "/resources/IndiaStateCodeHeader.csv";
 
     @Test
     public void givenIndiaCensusData_returnsExactMapCount() {
@@ -54,7 +62,8 @@ public class CensusIndiaAdapterTest {
     public void givenIncorrectDelimiterInIndiaCensusData_ShouldThrowException() {
         IndiaCensusAdapter indiaCensusAdapter =  new IndiaCensusAdapter();
         try {
-            indiaCensusAdapter.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH);
+            indiaCensusAdapter.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_DELIMITER_FILE,
+                    INDIA_CENSUS_CSV_DELIMITER_FILE);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.ISSUE_RELATED_TO_FILE, e.type);
         }
@@ -64,7 +73,8 @@ public class CensusIndiaAdapterTest {
     public void givenIncorrectHeaderInIndiaCensusData_ShouldThrowException() {
         IndiaCensusAdapter indiaCensusAdapter =  new IndiaCensusAdapter();
         try {
-            indiaCensusAdapter.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH);
+            indiaCensusAdapter.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_HEADER_FILE,
+                    INDIA_STATE_CODE_CSV_HEADER_FILE);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.ISSUE_RELATED_TO_FILE, e.type);
         }
@@ -80,4 +90,13 @@ public class CensusIndiaAdapterTest {
         }
     }
 
+    @Test
+    public void givenIndiaCountryWithOnlyOneFile_ShouldThrowException() {
+        IndiaCensusAdapter indiaCensusAdapter = new IndiaCensusAdapter();
+        try {
+            indiaCensusAdapter.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.ONLY_ONE_FILE,e.type);
+        }
+    }
 }
