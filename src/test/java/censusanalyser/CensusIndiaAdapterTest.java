@@ -21,7 +21,7 @@ public class CensusIndiaAdapterTest {
         Map result = null;
         try {
              result = indiaCensusAdapter.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH,
-                    INDIA_STATE_CODE_FILE_PATH);
+                     INDIA_STATE_CODE_FILE_PATH);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
