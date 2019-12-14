@@ -8,7 +8,6 @@ public class CensusDAO {
     public double populationDensity;
     public double totalArea;
 
-
     public CensusDAO(IndiaCensusCSV csvFileIterator) {
         state = csvFileIterator.state;
         totalArea =csvFileIterator.areaInSqKm;

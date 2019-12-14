@@ -71,5 +71,4 @@ public class CensusUSAdapterTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.ISSUE_RELATED_TO_FILE, e.type);
         }
     }
-
 }

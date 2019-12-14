@@ -19,8 +19,8 @@ public abstract class CensusAdapter {
     public abstract <T> Map<String, CensusDAO> loadCensusData(CensusAnalyser.Country country, String... csvFilePath )
             throws CensusAnalyserException;
 
-    public  <T> Map loadCensusData(Class<T> censusCsvClass, String... csvFilePath ) throws CensusAnalyserException {
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath[0]))){
+    public  <T> Map loadCensusData(Class<T> censusCsvClass, String csvFilePath ) throws CensusAnalyserException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))){
             ICSvBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
             Iterator<T> censusCSVIterator = csvBuilder.getFileByIterator(reader,
                     censusCsvClass);

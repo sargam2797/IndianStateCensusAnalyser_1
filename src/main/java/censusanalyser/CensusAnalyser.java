@@ -14,11 +14,10 @@ public class CensusAnalyser {
     public CensusAnalyser(Country country) {
         this.country = country;
     }
-
     Map<String, CensusDAO> censusMap = null;
 
     public int loadCensusData(Country country, String... csvFilePath) throws CensusAnalyserException {
-        CensusAdapter censusAdapter = LoadCensusDataFactory.getCensusObject(country);
+        CensusAdapter censusAdapter = LoadCensusDataProvider.getCensusObject(country);
         censusMap = censusAdapter.loadCensusData(country, csvFilePath);
         return censusMap.size();
     }

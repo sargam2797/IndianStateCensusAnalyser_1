@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Map;
-
 public class CensusAnalyserTest {
-
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
     private static final String INDIA_STATE_CODE_FILE_PATH = "/home/user/CensusAnalyser/CensusAnalyser/src/test/" +
             "resources/IndiaStateCode.csv";

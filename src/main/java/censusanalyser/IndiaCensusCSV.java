@@ -17,7 +17,6 @@ public class IndiaCensusCSV {
     public int densityPerSqKm;
 
     public IndiaCensusCSV() {
-
     }
 
     public IndiaCensusCSV(String state, int population, int areaInSqKm, int densityPerSqKm) {
