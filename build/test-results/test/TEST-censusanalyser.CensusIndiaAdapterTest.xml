@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="censusanalyser.CensusIndiaAdapterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-14T09:42:06" hostname="FH400" time="0.652">
+  <properties/>
+  <testcase name="givenIndiaCensusData_returnsExactMapCount" classname="censusanalyser.CensusIndiaAdapterTest" time="0.652"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

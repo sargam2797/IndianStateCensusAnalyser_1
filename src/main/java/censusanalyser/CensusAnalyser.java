@@ -12,6 +12,7 @@ public class CensusAnalyser {
     private Country country;
 
     public CensusAnalyser(Country country) {
+
         this.country = country;
     }
     Map<String, CensusDAO> censusMap = null;
